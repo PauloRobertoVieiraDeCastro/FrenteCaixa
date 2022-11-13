@@ -20,11 +20,11 @@ import io
 
 app = Flask(__name__)
 app.config['MYSQL_HOST'] = "localhost"
-app.config['MYSQL_USER'] = "root"
-app.config['MYSQL_PASSWORD'] = "cimento1"
+app.config['MYSQL_USER'] = "seuusuario"
+app.config['MYSQL_PASSWORD'] = "suasenha"
 app.config['MYSQL_DB'] = "Venda_GET"
 app.config['MYSQL_PORT'] = 3306
-app.secret_key = 'cimento1' #ela é essencial para deletar dados do banco
+app.secret_key = 'suasenha' #ela é essencial para deletar dados do banco
 db = MySQL(app)
 atividade_dao = DAO(db)
 atividade_dao_compras = DAO_COMPRAS(db)
