@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>Caixa do Ateliê GET Festas</title>
+        <script src="https://kit.fontawesome.com/133b0d3f9c.js" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+        <link href='https://fonts.googleapis.com/css?family=Alegreya+SC' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+         <link rel="stylesheet" href="{{ url_for('static', filename='get.css') }}">
+        <!--<link rel="stylesheet" href="get.css">
+        <link rel="shortcut icon" href="get3.ico"/>-->
+        <script src="https://kit.fontawesome.com/133b0d3f9c.js" crossorigin="anonymous"></script>
+       
+        <!--Header wordpress-->
+    </head>
+
+    <body>
+        
+        <div class="super">
+            <div class="superinfo-bg"> <!--acima do cabeçalho-->
+                <div class="superinfo col text-center d-block">
+                   Estatística de vendas - G&T Festas
+                </div>
+            </div>
+
+
+            <nav class="navbar navbar-expand-md fixed-top py-3 box-shadow estilo_nav"> <!--expande apos 760 px-->
+                <a class="navbar-brand shark" href="{{ url_for('teste') }}"><img src="{{ url_for('static', filename='get4.jpg') }}"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"><i class="fas fa-bars" style="color:#781568; font-size:28px;"></i></span>
+                </button>
+
+                <div id="navbarText" class="collapse navbar-collapse"><!--O id deve ser esse, pois mostrará todo o conteudo com o toggle button-->
+                    <ul class="navbar-nav ml-auto"> <!--gera margem esquerda, levando para direita-->
+                        <li class="nav-item">
+                            <a class="nav-link ml-md-2 itens_nav" href="{{ url_for('vendas') }}">Vendas</a>
+                        </li>
+
+                       
+                        <li class="nav-item">
+                            <a class="nav-link ml-md-2 itens_nav" href="{{ url_for('clientes') }}">Cadastrar cliente</a>
+                        </li>                    
+
+                         <li class="nav-item">
+                            <a class="nav-link ml-md-2 itens_nav" href="{{ url_for('inserir_produto') }}">Criar produto</a>
+                        </li>
+
+                         <li class="nav-item">
+                            <a class="nav-link ml-md-2 itens_nav" href="{{ url_for('estatistica') }}">Dashboard</a>
+                        </li>
+
+                    </ul>
+                </div> 
+            </nav>
+        </div>
+
+        <section class="justify-content-center text-center container" style="background: white; color: green; border: bolder; margin-top: 70px">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
+                    <div class="card border-left-danger shadow h-100 bg-light">
+                        <div class="card-body">
+                            <h3>Quantitativo de vendas</h3>
+                             <h4>{{ contagem }} Unidades</h4>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4 col-md-12 col-sm-12 mt-2">
+                    <div class="card border-left-danger shadow h-100 bg-light">
+                        <div class="card-body">
+                            <h3>Renda obtida</h3>
+                             <h4>R$ {{ soma }} </h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-12 col-sm-12 mt-2">
+                    <div class="card border-left-danger shadow bg-light">
+                        <div class="card-body">
+                             
+                            <h3>Produto mais vendido</h3>
+                            <h4>{{ maximo }}</h4>
+                        </div>
+                    
+                    </div>
+                </div>
+           </div>
+
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div id='chart' class='chart'></div>
+            </div>
+
+             <div class="row justify-content-center">
+               
+                <div class="col-lg-5 col-md-5 col-sm-12">
+                     <div id='chart2' class='chart2'></div>
+                </div>
+
+                <div class="col-lg-5 col-md-5 col-sm-12">
+                     <div id='chart3' class='chart3'></div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div id='chart4' class='chart'></div>
+            </div>
+
+
+        </section>
+         <footer>
+            <div class="foot text-center py-3">
+                <p class="mb-0">Desenvolvido por Paulo Roberto Vieira de Castro</p> <!--o mb-0 retira a margem padrão da tag p-->
+            </div>
+        </footer>
+
+
+       
+        <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+        
+        <script type='text/javascript'>
+          var graphs1 = {{graphJSON[0] | safe}};
+          var graphs2 = {{graphJSON[1] | safe}};
+          var graphs3 = {{graphJSON[2] | safe}};
+          var graphs4 = {{graphJSON[3] | safe}};
+          var config = {responsive: true};
+          Plotly.newPlot('chart',graphs1,{},config);
+          Plotly.newPlot('chart2',graphs2,{},config);
+          Plotly.newPlot('chart3',graphs3,{},config);
+          Plotly.newPlot('chart4',graphs4,{},config);
+        </script>
+        
+
+        
+
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <!--<script type="text/javascript" src="adddel.js"></script>-->
+    </body>
+</html>

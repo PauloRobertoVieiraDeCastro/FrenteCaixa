@@ -1,0 +1,196 @@
+/*resetando as tags, antes de iniciar*/
+body,a, h1,h2,h3,h4,p,ul,li{
+	margin: 0px;
+	padding: 0px;
+}
+
+body{
+	font-family: cursive, "Lucida Console", monospace;/*"Nunito",Helvetica, Arial, sans-serif;/*familia da fonte*/
+	color: #222222; /*cor preta nao tao intensa da fonte*/
+	padding-top: 140px;
+	background-color: #E5E7E9;
+}
+
+ul{
+	list-style: none; /*retira os pontos antes de cada termo*/
+}
+
+a{
+	text-decoration: none; /*retira o sublinhado do link*/
+	color: white;
+}
+
+a:hover{
+	text-decoration: none;
+}
+
+img{
+	max-width: 100%;/*não estoura o limite da tela, mas nao perde resolução*/
+	display: block; /*as imagens nunca alinham, sempre ficam como bloco (em cima da outra tag)*/
+	
+}
+
+*{
+	box-sizing: border-box; /*com essa propriedade, a largura era sempre o somatório do width com o padding.
+	/*com o border-box a largura é sempre o width apenas*/
+}
+
+footer{
+	background-color: #781568;
+	color: white;
+	z-index:-9999
+}
+
+.shark{
+	line-height: 25px;
+	font-size: 16px;
+	color: white;
+}
+
+.h6{
+	font-weight: bold;
+	font-size: 18px;
+	text-transform: uppercase;
+	line-height: 26px;
+}
+
+li{
+	color: white;
+}
+.foot{
+	background-color: #981568;
+	color: white;	
+}
+
+.navbar-toggler {
+    padding: .25rem .75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+  	border-style: solid 2px;
+    border: 1px solid #781568;
+    border-radius: .25rem;
+}
+/*classes menos genericas - cabeçalho de cima e de baixo*/
+.superinfo-bg{
+	background-color: #781568;
+	color: white;
+}
+
+.superinfo{
+	margin: 0 auto;/*centraliza o container na tela, limitada no superinfo-bg*/
+	display: flex; /*alinha os itens*/
+	justify-content: space-between; /*espaça igualmente os elementos filhos dessa classe*/
+	flex-wrap: wrap; /*se não couber, os elementos passam para a próxima linha*/
+	padding-top: 10px;
+	font-size: 1.5rem;
+}
+
+.superinfo p{
+	margin: 0 10px 20px 10px;
+}
+
+.superinfo a{
+	color: white; /*estilizo a tag a, filha em algum grau da classe superinfo*/
+	margin: 0 10px 10px 10px;
+}
+
+.menu-bg{
+	background-color: #781568;
+}
+
+.super{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width:100%;
+	z-index: 10;
+}
+
+.menu{
+	display: flex; /*o menu é um container, q torna as divs filhas como flex-items.*/
+	flex-wrap: wrap;
+	max-width: 960px; /*ou seja, a div e a nav são flex-items agora*/
+	margin: 0 auto;
+	padding: 15px 0;
+	justify-content: space-between; /*com isso, cada um fica em uma ponta*/
+	align-items: center;
+}
+
+.estilo_nav{
+	background-color: white;
+	margin-top: 47px;
+}
+
+.itens_nav{
+	color: #781568;
+	letter-spacing: 0.09em;
+	line-height: 20px;
+	font-weight: bold;
+}
+
+.nav-item:hover{
+	font-weight: bolder;
+}
+
+
+label{
+	color: #781568;
+	line-height: 25px;
+	letter-spacing: 0.06em;
+	font-family: cursive, "Lucida Console", monospace;
+}
+
+input[type=text],input[type=email],input[type=tel],input[type=number]{
+  border: 1px solid #781568;
+  border-radius: 4px;
+}
+
+select{
+	border: 1px solid #781568;
+ 	border-radius: 4px;
+}
+
+
+
+textarea{
+	border: 1px solid #781568;
+}
+
+.botao_envio{
+	background-color: #781565;
+	border: 1px solid #781568;
+	color: white;
+}
+
+.botao_envio:hover{
+	background-color: #791565;
+	border: 2px solid #781568;
+	font-weight: bolder;
+}
+
+.ender a{
+	color: #781568;
+	line-height: 36px;
+	letter-spacing: 0.08em;
+	font-family: cursive, "Lucida Console", monospace;
+}
+
+.section_color{
+	background-color: #f1f1f1;
+}
+
+
+
+.btn{
+	
+	cursor: pointer;
+
+}
+
+.select2-dropdown {
+    z-index:99999;
+}
+
+.select2-dropdown.increasezindex {
+    z-index:99999;
+}

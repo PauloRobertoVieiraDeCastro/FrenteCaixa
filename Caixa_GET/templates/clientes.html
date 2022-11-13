@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>Caixa do Ateliê GET Festas</title>
+        <script src="https://kit.fontawesome.com/133b0d3f9c.js" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+        <link href='https://fonts.googleapis.com/css?family=Alegreya+SC' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+         <link rel="stylesheet" href="{{ url_for('static', filename='get.css') }}">
+        <!--<link rel="stylesheet" href="get.css">
+        <link rel="shortcut icon" href="get3.ico"/>-->
+        <script src="https://kit.fontawesome.com/133b0d3f9c.js" crossorigin="anonymous"></script>
+       
+        <!--Header wordpress-->
+    </head>
+
+    <body>
+        
+        <div class="super">
+            <div class="superinfo-bg"> <!--acima do cabeçalho-->
+                <div class="superinfo col text-center d-block">
+                   Gerenciamento de vendas - G&T Festas
+                </div>
+            </div>
+
+
+            <nav class="navbar navbar-expand-md fixed-top py-3 box-shadow estilo_nav"> <!--expande apos 760 px-->
+                <a class="navbar-brand shark"><img src="{{ url_for('static', filename='get4.jpg') }}"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"><i class="fas fa-bars" style="color:#781568; font-size:28px;"></i></span>
+                </button>
+
+                <div id="navbarText" class="collapse navbar-collapse"><!--O id deve ser esse, pois mostrará todo o conteudo com o toggle button-->
+                    <ul class="navbar-nav ml-auto"> <!--gera margem esquerda, levando para direita-->
+                        <li class="nav-item">
+                            <a class="nav-link ml-md-2 itens_nav" href="brownies.html">Vendas</a>
+                        </li>
+
+                       
+                        <li class="nav-item">
+                            <a class="nav-link ml-md-2 itens_nav" href="bolos.html">Cadastrar cliente</a>
+                        </li>                    
+
+                         <li class="nav-item">
+                            <a class="nav-link ml-md-2 itens_nav" href="cupcake.html">Criar produto</a>
+                        </li>
+
+                         <li class="nav-item">
+                            <a class="nav-link ml-md-2 itens_nav" href="contact.html">Dashboard</a>
+                        </li>
+
+                    </ul>
+                </div> 
+            </nav>
+        </div>
+
+         <section class="justify-content-center text-center container" style="background: white; border: bolder">
+            <h2 class="text-center justify-content-center mt-2">Lista de produtos disponíveis</h2>
+            <div class="text-center justify-content-center table-responsive">   
+                <table class="table table-striped table-bordered border border-dark border text-center justify-content-center" id="tbAmostras" style="width: 100%">
+                    <thead style="width: 100%">
+                        <tr>
+                            <th>SKU</th>
+                            <th>Produto</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody style="width: 100%">
+                        {% for i in lista %}
+                            <tr>
+                                <td>{{ i.sku }}</td>
+                                <td>{{ i.produto }}</td>
+                                <td>{{ i.preco }}</td>
+                                <td>{{ i.quantidade }}</td>
+                                <td class="edicao"><a>Editar</a></td>
+                                <td class="edicao"><a>Remover</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        
+
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <!--<script type="text/javascript" src="adddel.js"></script>-->
+        <!--<script type="text/javascript" src="{{ url_for('static', filename='adddel.js') }}"></script>-->
+        <!--<script>document.documentElement.classList.add("js");</script>-->
+    </body>
+</html>

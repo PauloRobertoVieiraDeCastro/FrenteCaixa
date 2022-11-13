@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>Caixa do Ateliê GET Festas</title>
+        <script src="https://kit.fontawesome.com/133b0d3f9c.js" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+        <link href='https://fonts.googleapis.com/css?family=Alegreya+SC' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         <link rel="stylesheet" href="{{ url_for('static', filename='get.css') }}">
+        <!--<link rel="stylesheet" href="get.css">
+        <link rel="shortcut icon" href="get3.ico"/>-->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+        <script src="https://kit.fontawesome.com/133b0d3f9c.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+        <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
+  <!-- select2 -->
+        <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+  <!-- select2-bootstrap4-theme -->
+  <!--<link href="https://raw.githack.com/ttskch/select2-bootstrap4-theme/master/dist/select2-bootstrap4.css" rel="stylesheet"> <!-- for live demo page -->
+  <!--<link href="select2-bootstrap4.css" rel="stylesheet"> <!-- for local development env -->
+       
+      
+       
+        <!--Header wordpress-->
+    </head>
+
+    <body>
+        
+        <div class="super">
+            <div class="superinfo-bg"> <!--acima do cabeçalho-->
+                <div class="superinfo col text-center d-block">
+                   Gerenciamento de vendas - G&T Festas
+                </div>
+            </div>
+
+
+            <nav class="navbar navbar-expand-md fixed-top py-3 box-shadow estilo_nav"> <!--expande apos 760 px-->
+                <a class="navbar-brand shark" href="{{ url_for('teste') }}"><img src="{{ url_for('static', filename='get4.jpg') }}"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"><i class="fas fa-bars" style="color:#781568; font-size:28px;"></i></span>
+                </button>
+
+                <div id="navbarText" class="collapse navbar-collapse"><!--O id deve ser esse, pois mostrará todo o conteudo com o toggle button-->
+                    <ul class="navbar-nav ml-auto"> <!--gera margem esquerda, levando para direita-->
+                        <li class="nav-item">
+                            <a class="nav-link ml-md-2 itens_nav" href="{{ url_for('vendas') }}">Vendas</a>
+                        </li>
+
+                       
+                        <li class="nav-item">
+                            <a class="nav-link ml-md-2 itens_nav" href="{{ url_for('clientes') }}">Cadastrar cliente</a>
+                        </li>                    
+
+                         <li class="nav-item">
+                            <a class="nav-link ml-md-2 itens_nav" href="{{ url_for('inserir_produto') }}">Criar produto</a>
+                        </li>
+
+                         <li class="nav-item">
+                            <a class="nav-link ml-md-2 itens_nav" href="{{ url_for('estatistica') }}">Dashboard</a>
+                        </li>
+
+                    </ul>
+                </div> 
+            </nav>
+        </div>
+
+
+
+        <section class="jumbotron justify-content-center" style="padding-bottom: 0px">
+             <div class="justify-content-center">   
+
+                <div class="form-row text-center justify-content-center">
+                    <div class="form-group col-lg-12 col-md-12 col-sm-12 mt-2">
+                        <label for="pokemongo" style="font-weight: bold">Insira o código SKU ou o nome do produto a buscar</label>
+                    </div>
+                    <div class="form-group col-lg-4 col-md-12 col-sm-12 mod">
+                        <input style="border: solid 2px" id="myInput" onkeyup="meuPedido()"
+                        class="form-control form-control-lg fa fa-search" name="oleocorrente" aria-label="Search" placeholder="Buscar produto...">
+                    </div>
+                </div>
+
+                <div class="form-group row text-center justify-content-center my-1">
+                    <button class="btn btn-lg botao_envio" style="min-width: 200px;" id="botao_iniciar" data-toggle="modal" data-target="#myModal">Iniciar compra</button>
+                </div>  
+            </div>
+
+
+             <!-- Modal content-->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+    
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <form action="{{ url_for('pagar') }}" method="post">
+                        <fieldset>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="cod_cliente">Insira o cupom do cliente</label>
+                                <input type="number" id="cod_cliente" name="cod_cliente" class="form-control cod_cliente" title="Somente números" placeholder="Número localizado à esquerda do cupom">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cod_prod">Insira o código do produto</label>
+                                <select class="form-control select2bs4" id="codigo" class="codigo" placeholder="Escolha um código SKU" autofocus>
+                                    {% for i in lista %}
+                                        <option class="{{i.ide}}" value="{{ i.sku }}">{{ i.sku }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            
+                            <h3 class="py-2 subtotal">Subtotal: </h3>
+                            <div class="container-fluid">
+                                <div class="row clearfix">
+                                    <div class="table-responsive col-md-12 column">
+                                        <table class="table table-bordered table-hover" id="tab_logic">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">
+                                                    Código do item
+                                                </th>
+                                                <th class="text-center">
+                                                    Nome do Produto
+                                                </th>
+                                                <!--<th class="text-center">
+                                                    Quantidade
+                                                </th>-->
+                                                <th class="text-center">
+                                                    Preço
+                                                </th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody id="tabela">
+                                            <div style="display: none" id="tabel_preco" class="{{n}}">
+                                                {% for i in lista %}
+                                                    <div id="{{ loop.index0 + 1 }}" class="{{i.produto}}"></div>
+                                                    <div id="{{ loop.index0 + 1 }}a" class="{{i.preco}}"></div>
+                                                    <div id="{{ loop.index0 + 1 }}b" class="{{i.sku}}"></div>
+                                                {% endfor %}
+                                            </div>
+                                            <!--{{lista[0].sku}}-->
+                                            <tr id='addr0'>
+                                               
+                                            </tr>
+                                              
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row text-center justify-content-center my-3">
+                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                     <button class="btn btn-lg botao_envio" style="min-width: 200px;" id="add_row">Adicionar item</button>     
+                                </div>
+                           
+                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                    <button class="btn btn-lg botao_envio" style="min-width: 200px;" id="delete_row">Remover item</button>    
+                                </div>
+                            </div>
+
+
+                            <div class="form-group my-3">
+                                <label for="pagamento">Insira o valor de pagamento</label>
+                                <input type="number" min="0" step="0.01" id="pagamento" name="pagamento" class="form-control pagamento" title="Somente números. Os centavos podem ser separados por vírgulas ou ponto" placeholder="Em R$ (somente números, separados por vírgula ou ponto)">
+                            </div>
+
+                            <div class="form-group my-3">
+                                <label for="pagamento_froma">Selecione a forma de pagamento</label>
+                                <select class="form-control" id="pagamento_forma" class="pagamento_forma" name="pagamento_forma">
+                                    <option class="cartao">Cartão de crédito/débito</option>
+                                    <option class="pix">PIX - 21048292000102</option>
+                                    <option class="dinheiro">Dinheiro</option>
+                                </select>
+                            </div>
+                        </div>
+                        </fieldset>
+                       
+                   
+                   
+                        <div class="modal-footer">
+                            <h3 class="mr-auto troco">Troco: R$</h3>
+                            <button class="btn btn-lg botao_envio" style="min-width: 200px;" id="fim_pagamento">Calcular troco</button>  
+                            <button type="submit" class="btn btn-primary btn-lg botao_envio" style="min-width: 200px;">Finalizar compra</button>
+                       
+                        </div>
+                    </form>
+
+                  </div>
+                </div>
+            </div>
+
+            
+        </section> 
+
+        <section class="justify-content-center text-center container" style="background: white; border: bolder">
+            <h2 class="text-center justify-content-center mt-2">Lista de produtos disponíveis</h2>
+            <div class="text-center justify-content-center table-responsive">   
+                <table class="table table-striped table-bordered border border-dark border text-center justify-content-center" id="tbAmostras" style="width: 100%">
+                    <thead style="width: 100%">
+                        <tr>
+                            <th>SKU</th>
+                            <th>Produto</th>
+                            <th>Preço</th>
+                            <!--<th>Quantidade</th>-->
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody style="width: 100%">
+                        {% for i in lista %}
+                            <tr>
+                                <td>{{ i.sku }}</td>
+                                <td>{{ i.produto }}</td>
+                                <td>{{ i.preco }}</td>
+                                <!--<td>{{ i.quantidade }}</td>-->
+                                <td class="edicao"><a href="{{ url_for('editar',ide=i.ide) }}" style="color: #781568">Editar <i class="fa fa-pencil"></i></a></td>
+                                <td>
+                                    <!--<button class="edicao btn btn-delete">
+                                        <!--<span class="mdi mdi-delete mdi-24px"></span>
+                                        <span class="mdi mdi-delete-empty mdi-24px"></span>-->
+                                    <a href="{{ url_for('deletar',ide=i.ide) }}" style="color: #781568">Remover <i class="fa fa-trash-o"></i></a>
+                                    <!--<a style="color: #781568; cursor: pointer" data-toggle="modal" data-target="#myModal2" class="deletar">Remover <i class="fa fa-trash-o"></i></a>
+                                    <div class="modal fade" id="myModal2" role="dialog">
+                                        <div class="modal-dialog modal-md">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4>Remover produto do banco de dados</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+
+                                             <div class="modal-body">
+                                                <div class="my-3">Você realmente deseja remover esse produto? Lembre-se que essa ação é irreversível.</div>
+                                                <button class="btn btn-danger"><a href="{{ url_for('deletar',ide=i.ide) }}" style="color: white">Confirmar remoção <i class="fa fa-trash-o"></i></a></button>
+                                             </div>     
+                                        </div>
+                                    </div>-->
+                                    
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+
+
+        <footer>
+            <div class="foot text-center py-3">
+                <p class="mb-0">Desenvolvido por Paulo Roberto Vieira de Castro</p> <!--o mb-0 retira a margem padrão da tag p-->
+            </div>
+        </footer>
+
+        
+
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <!--<script type="text/javascript" src="adddel.js"></script>-->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"> </script>
+        
+        <script type="text/javascript" src="{{ url_for('static', filename='adddel.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='localiza.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='busca_select.js') }}"></script>
+    </body>
+</html>
