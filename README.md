@@ -4,3 +4,6 @@ Consiste-se em uma frente de caixa, com possibilidade de cadastro, atualização
 
 
 ![imagem1](https://user-images.githubusercontent.com/44949683/201724444-5bb9e1fc-2ddd-4ef7-b288-4dfbbe4ae9a4.png)
+
+
+![imagem2](https://user-images.githubusercontent.com/44949683/201724673-7d629afe-b25e-4372-bdbf-76931affd239.png)
