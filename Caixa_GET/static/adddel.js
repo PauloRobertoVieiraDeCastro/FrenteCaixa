@@ -123,12 +123,12 @@ $(document).ready(function(){
           cupom = document.querySelector(".cod_cliente").value;
           //console.log(cupom)    
           if(cupom>20000){
-            document.querySelector(".subtotal").innerHTML = "Subtotal: R$ " + (0.8*subtotal).toFixed(2);
-            troco = parseFloat(document.querySelector(".pagamento").value) - 0.8*subtotal;
+            document.querySelector(".subtotal").innerHTML = "Subtotal: R$ " + (0.9*subtotal).toFixed(2);
+            troco = parseFloat(document.querySelector(".pagamento").value) - 0.9*subtotal;
             document.querySelector(".troco").innerHTML = "Troco: R$ " + troco.toFixed(2);
-          }else if(cupom>=0){
-            document.querySelector(".subtotal").innerHTML = "Subtotal: R$ " + (0.8*subtotal).toFixed(2);
-            troco = parseFloat(document.querySelector(".pagamento").value) - 0.8*subtotal;
+          }else if(cupom>0){
+            document.querySelector(".subtotal").innerHTML = "Subtotal: R$ " + (0.95*subtotal).toFixed(2);
+            troco = parseFloat(document.querySelector(".pagamento").value) - 0.95*subtotal;
             document.querySelector(".troco").innerHTML = "Troco: R$ " + troco.toFixed(2);
           }
           else{
